@@ -31,6 +31,8 @@ public class PlatformerMovement : MonoBehaviour
     private bool wasGrounded;
     private bool isGrounded;
 
+    public InputActionAsset playerActions;
+
     [SerializeField] private Animator animator;
     
     void Awake()
@@ -43,7 +45,8 @@ public class PlatformerMovement : MonoBehaviour
         // Set gravity scale to 0 so player won't "fall" 
         rb.gravityScale = 0;
 
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        animator.SetBool("Walking", false);
     }
     
     void Update()
@@ -84,6 +87,15 @@ public class PlatformerMovement : MonoBehaviour
                 spriteRenderer.flipX = false;
             else if (moveInput.x < -0.01f)
                 spriteRenderer.flipX = true;
+        }
+
+        if (playerActions.FindAction("Move").IsPressed())
+        {
+            animator.SetBool("Walking", true);
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
         }
     }
 
