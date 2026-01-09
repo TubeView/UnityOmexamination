@@ -9,7 +9,7 @@ public class AudioPlayByMaterial : MonoBehaviour
     public enum CurrentMaterial
     {
         Grass,
-        Gravel,
+        Dirt,
         Metal
     }
     
